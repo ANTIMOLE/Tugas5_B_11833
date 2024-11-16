@@ -42,22 +42,22 @@ if os.path.exists(model_path):
             st.write("## Navigator")
             predict_button = st.button("Predict")
 
-        # Tombol di sidebar
-        if uploaded_files and predict_button:
-            st.write("## Hasil Prediksi")
-            for uploaded_file in uploaded_files:
-                # Buka dan proses setiap gambar
-                image = Image.open(uploaded_file)
-                processed_image = preprocess_image(image)
-                predictions = model.predict_proba(processed_image)
-                predicted_class = np.argmax(predictions)
-                confidence = np.max(predictions) * 100
-
-                # Tampilkan nama file dan hasil prediksi
-                st.write(f"Nama File: {uploaded_file.name}")
-                st.write(f"Kelas Prediksi: {class_names[predicted_class]}")
-                st.write(f"Confidence: {confidence:.2f}%")
-                st.write("---")  # Garis pemisah antara hasil prediksi
+            # Tombol di sidebar
+            if uploaded_files and predict_button:
+                st.write("## Hasil Prediksi")
+                for uploaded_file in uploaded_files:
+                    # Buka dan proses setiap gambar
+                    image = Image.open(uploaded_file)
+                    processed_image = preprocess_image(image)
+                    predictions = model.predict_proba(processed_image)
+                    predicted_class = np.argmax(predictions)
+                    confidence = np.max(predictions) * 100
+    
+                    # Tampilkan nama file dan hasil prediksi
+                    st.write(f"Nama File: {uploaded_file.name}")
+                    st.write(f"Kelas Prediksi: {class_names[predicted_class]}")
+                    st.write(f"Confidence: {confidence:.2f}%")
+                    st.write("---")  # Garis pemisah antara hasil prediksi
 
         # Tampilkan gambar yang diunggah di halaman utama
         if uploaded_files:
